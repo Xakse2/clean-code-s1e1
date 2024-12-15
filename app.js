@@ -160,13 +160,15 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     var editButton=taskListItem.querySelector("button.task-list__edit-button");
     var deleteButton=taskListItem.querySelector("button.task-list__delete-button");
 
-
-    //Bind editTask to edit button.
-    editButton.onclick=editTask;
-    //Bind deleteTask to delete button.
-    deleteButton.onclick=deleteTask;
-    //Bind taskCompleted to checkBoxEventHandler.
-    checkBox.onchange=checkBoxEventHandler;
+    if (deleteButton) {
+        deleteButton.addEventListener("click", deleteTask);
+    }
+    if (editButton) {
+        editButton.addEventListener("click", editTask);
+    } 
+    if (checkBox) {
+        checkBox.addEventListener("change", checkBoxEventHandler);
+    } 
 }
 
 //cycle over incompleteTaskHolder ul list items
